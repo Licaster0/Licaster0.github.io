@@ -933,8 +933,11 @@
       <h2 class="section-title fade-in">About Me</h2>
       <div class="about-content">
         <div class="about-image slide-in-left">
-          <!-- IMPORTANT: Replace this placeholder with your actual photo URL -->
+          <!-- IMPORTANT: Replace this placeholder with your actual photo URL
           <img src="https://placehold.co/280x280/1a1a2e/e0e0e0?text=Your+Photo" alt="A photo of Ahmet Ülker"
+            class="profile-photo">
+          -->
+          <img src="Images/Me.jpeg" alt="A photo of Ahmet Ülker"
             class="profile-photo">
         </div>
         <div class="about-text slide-in-right">
@@ -1211,10 +1214,7 @@
           </div>
         </div>
         <div class="contact-form slide-in-right">
-        <form
-        action="https://formspree.io/f/mrbkwydd"
-        method="POST"
-        >
+          <form id="contactForm" action="https://formspree.io/f/mrbkwydd" method="POST">
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" required>
@@ -1231,12 +1231,32 @@
               <label for="message">Message</label>
               <textarea id="message" name="message" required></textarea>
             </div>
+
+            <!-- HONEYPOT FIELD -->
+            <div style="display:none;" aria-hidden="true">
+              <label for="website">Leave this field blank</label>
+              <input type="text" id="website" name="website" tabindex="-1">
+            </div>
+
             <div class="success-message" id="successMessage">
               Thank you for your message! I'll get back to you soon.
             </div>
             <button type="submit" class="btn">Send Message</button>
           </form>
         </div>
+
+        <!-- HONEYPOT JS BLOCKER -->
+        <script>
+          document.getElementById("contactForm").addEventListener("submit", function (e) {
+            const honeypot = document.getElementById("website").value;
+            if (honeypot) {
+              console.log("Bot detected! Submission blocked.");
+              e.preventDefault();
+              return false;
+            }
+          });
+        </script>
+
       </div>
     </section>
   </main>
