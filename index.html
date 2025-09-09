@@ -1384,8 +1384,11 @@
             </a>
           </div>
         </div>
-  <div class="contact-form slide-in-right">
-   <form id="contactForm" action="https://formspree.io/f/mrbkwydd" method="POST">
+        <div class="contact-form slide-in-right">
+         <form
+  action="https://formspree.io/f/mrbkwydd"
+  method="POST"
+>
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" required>
@@ -1403,11 +1406,12 @@
               <textarea id="message" name="message" required></textarea>
             </div>
 
-            <!-- HONEYPOT FIELD -->
-            <div class="sr-only" aria-hidden="true">
-              <label for="website">Do not fill this field</label>
-              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            <!-- HONEYPOT FIELD 
+            <div style="display:none;" aria-hidden="true">
+              <label for="website">Leave this field blank</label>
+              <input type="text" id="website" name="website" tabindex="-1">
             </div>
+-->
             <div class="success-message" id="successMessage">
               Thank you for your message! I'll get back to you soon.
             </div>
