@@ -432,6 +432,130 @@
       flex-direction: column;
     }
 
+    /* Mystery Project Cards (span multiple columns) */
+    .mystery-card {
+      grid-column: 1 / -1;
+      min-height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3.25rem 2rem 3rem;
+      background: linear-gradient(135deg, #1e1e2c 0%, #15151f 100%);
+      border: 1px solid rgba(255,140,0,0.25);
+      border-radius: 16px;
+      box-shadow: 0 8px 22px -10px rgba(0,0,0,0.55), inset 0 0 12px -6px rgba(255,140,0,0.3);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .mystery-card.alt {
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 25px rgba(0, 191, 255, 0.15), inset 0 0 15px rgba(0, 191, 255, 0.15);
+      background: linear-gradient(135deg, #1a1a2e 0%, #1d2e38 55%, #1a1a2e 100%);
+    }
+
+    /* Horror Variant */
+    .mystery-card.horror {
+      background: linear-gradient(135deg, #09090c 0%, #140607 55%, #09090c 100%);
+      border-color: rgba(255,40,40,0.4);
+      box-shadow: 0 6px 18px -8px rgba(0,0,0,0.7), inset 0 0 14px -8px rgba(255,35,35,0.45);
+    }
+  .mystery-card.horror::before { content:'?'; position:absolute; font-size: clamp(11rem, 32vw, 18rem); top:50%; left:50%; transform:translate(-50%,-50%); font-weight:900; letter-spacing:-.055em; pointer-events:none; color:#ff3030; opacity:.28; -webkit-text-stroke:6px rgba(0,0,0,0.5); text-shadow:
+    0 0 4px rgba(255,60,60,.55),
+    0 0 14px rgba(180,20,20,.55),
+    0 0 34px rgba(120,0,0,.45),
+    0 0 56px rgba(255,40,40,.35);
+  }
+    .mystery-card.horror::after { content:''; position:absolute; inset:0; background:radial-gradient(circle at 65% 40%, rgba(255,40,40,0.15), transparent 65%); opacity:.4; pointer-events:none; }
+
+    /* Hell Co-op Variant */
+    .mystery-card.hell {
+      background: linear-gradient(135deg, #1a0d05 0%, #210f06 55%, #0e0603 100%);
+      border-color: rgba(255,110,25,0.4);
+      box-shadow: 0 6px 18px -8px rgba(0,0,0,0.7), inset 0 0 14px -8px rgba(255,120,40,0.45);
+    }
+  .mystery-card.hell::before { content:'?'; position:absolute; font-size: clamp(11rem, 32vw, 18rem); top:50%; left:50%; transform:translate(-50%,-50%); font-weight:900; letter-spacing:-.055em; pointer-events:none; background:linear-gradient(155deg,#ffd89a 0%, #ff9a3d 40%, #ff6100 72%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; -webkit-text-stroke:6px rgba(0,0,0,0.55); opacity:.3; text-shadow:
+    0 0 5px rgba(255,140,50,.6),
+    0 0 18px rgba(255,110,30,.55),
+    0 0 34px rgba(255,90,10,.45),
+    0 0 60px rgba(255,120,30,.35);
+  }
+  .mystery-card:hover::before { opacity:.38; }
+    .mystery-card.hell::after { content:''; position:absolute; inset:0; background:radial-gradient(circle at 35% 55%, rgba(255,120,40,0.14), transparent 65%); opacity:.45; pointer-events:none; }
+
+    .mystery-card.horror .glitch { color:#ff2e2e; text-shadow:0 0 10px rgba(255,30,30,0.65); }
+    .mystery-card.hell .glitch { color:#ff7a29; text-shadow:0 0 10px rgba(255,110,20,0.65); }
+
+    .mystery-card::before,
+    .mystery-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(45deg, rgba(255, 140, 0, 0.05) 0 8px, transparent 8px 16px);
+      mix-blend-mode: overlay;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .mystery-card.alt::before {
+      background: repeating-linear-gradient(45deg, rgba(0, 191, 255, 0.06) 0 8px, transparent 8px 16px);
+    }
+  /* Base after removed - each variant has its own */
+    .mystery-card.alt::after {
+      background: radial-gradient(circle at 30% 70%, rgba(0, 191, 255, 0.25), transparent 60%);
+    }
+
+  /* Defer heavy animations until card is actually visible */
+  .mystery-card.visible::before { animation: scan 10s linear infinite; }
+  /* Removed continuous animations for performance */
+  .mystery-card .glitch { text-shadow:0 0 10px rgba(255,140,0,0.35); }
+  .mystery-card.horror .glitch { color:#ff3939; text-shadow:0 0 10px rgba(255,40,40,0.45); }
+  .mystery-card.hell .glitch { color:#ff8a33; text-shadow:0 0 10px rgba(255,120,40,0.45); }
+  .mystery-card:hover { box-shadow:0 10px 24px -12px rgba(0,0,0,0.75), inset 0 0 18px -10px rgba(255,140,0,0.45); }
+
+    .mystery-content { position: relative; z-index: 2; text-align: center; max-width: 900px; }
+    .mystery-content h3 { font-size: 3rem; margin-bottom: 1rem; letter-spacing: 4px; }
+    .mystery-tagline { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 1.25rem; }
+    .mystery-hint { font-size: 0.95rem; color: var(--text-accent); margin-bottom: 1.5rem; opacity: 0.85; }
+    .mystery-hint span { color: var(--secondary-color); }
+
+    /* Glitch text effect */
+  .glitch { position: relative; font-weight: 800; text-transform: uppercase; color: var(--primary-color); letter-spacing: .18em; }
+    .mystery-card.alt .glitch { color: var(--secondary-color); text-shadow: 0 0 10px rgba(0,191,255,0.6); }
+  .glitch.active::before,
+  .glitch.active::after { content: attr(data-text); position: absolute; inset: 0; mix-blend-mode: screen; pointer-events:none; }
+  .glitch.active::before { transform: translate(2px,0); color: var(--secondary-color); animation: glitch 1.1s steps(8,end); opacity:.7; }
+  .glitch.active::after { transform: translate(-2px,0); color: var(--primary-color); animation: glitch 1.1s steps(8,end) .15s; opacity:.65; }
+    @keyframes glitch {
+      0% { clip-path: inset(0 0 0 0); }
+      20% { clip-path: inset(10% 0 65% 0); }
+      40% { clip-path: inset(65% 0 10% 0); }
+      60% { clip-path: inset(20% 0 50% 0); }
+      80% { clip-path: inset(45% 0 25% 0); }
+      100% { clip-path: inset(0 0 0 0); }
+    }
+    .glitch.active { filter: drop-shadow(0 0 8px rgba(255,140,0,0.6)); }
+    .mystery-card.horror .glitch.active { filter: drop-shadow(0 0 8px rgba(255,40,40,0.6)); }
+    .mystery-card.hell .glitch.active { filter: drop-shadow(0 0 8px rgba(255,110,20,0.65)); }
+
+    /* Reduced motion: remove scanning/pulse and glitch bursts */
+    @media (prefers-reduced-motion: reduce) {
+      .mystery-card.visible::before, .mystery-card.visible::after { animation: none !important; }
+      .glitch.active::before, .glitch.active::after { animation: none !important; }
+    }
+
+    /* Accessibility helper */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      border: 0;
+    }
+
     .project-card:hover {
       transform: translateY(-10px);
       border-color: var(--primary-color);
@@ -512,6 +636,14 @@
       margin-bottom: 1.5rem;
       margin-top: auto;
     }
+
+    /* Center tech tags specifically inside mystery cards */
+    .mystery-card .tech-stack {
+      justify-content: center;
+      margin-top: 0.75rem; /* override auto so they sit beneath the hints */
+    }
+  .mystery-card .tech-stack .tech-tag { transition: background .3s ease, color .3s ease, box-shadow .3s ease; }
+  .mystery-card .tech-stack .tech-tag:hover { background: var(--primary-color); color: #12121c; box-shadow: 0 0 8px rgba(255,140,0,0.5); }
 
     .tech-tag {
       background: var(--surface-bg);
@@ -749,6 +881,7 @@
       .projects-grid {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       }
+  .mystery-card { grid-column: 1 / -1; }
 
       .skills-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -820,6 +953,7 @@
       .projects-grid {
         grid-template-columns: 1fr;
       }
+  .mystery-card { padding: 2.5rem 1.25rem; }
 
       .profile-photo {
         width: 220px;
@@ -933,10 +1067,6 @@
       <h2 class="section-title fade-in">About Me</h2>
       <div class="about-content">
         <div class="about-image slide-in-left">
-          <!-- IMPORTANT: Replace this placeholder with your actual photo URL
-          <img src="https://placehold.co/280x280/1a1a2e/e0e0e0?text=Your+Photo" alt="A photo of Ahmet Ülker"
-            class="profile-photo">
-          -->
           <img src="Images/Me.jpeg" alt="A photo of Ahmet Ülker" class="profile-photo">
         </div>
         <div class="about-text slide-in-right">
@@ -956,6 +1086,42 @@
     <section id="projects" class="section projects">
       <h2 class="section-title fade-in">My Game Projects</h2>
       <div class="projects-grid">
+        <!-- Mystery Project Card 1 -->
+  <div class="project-card mystery-card horror fade-in" aria-labelledby="mysteryTitle1">
+          <div class="mystery-content">
+            <h3 id="mysteryTitle1" class="glitch" data-text="UNSEEN">UNSEEN</h3>
+            <p class="mystery-tagline">Together, you disappear into the shadows.</p>
+            <p class="mystery-hint">Phase: <strong>Prototype</strong> | Exposure: <span>Hidden</span></p>
+            <div class="tech-stack" aria-label="Potential tech stack">
+              <span class="tech-tag">Unity</span>
+              <span class="tech-tag">C#</span>
+              <span class="tech-tag">Photon</span>
+              <span class="tech-tag">Atmosphere</span>
+            </div>
+            <div class="project-links" style="margin-top:1.25rem;">
+              <a href="#contact" aria-label="Reach out for more details">Request Access</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mystery Project Card 2 -->
+  <div class="project-card mystery-card hell fade-in" aria-labelledby="mysteryTitle2">
+            <div class="mystery-content">
+              <h3 id="mysteryTitle2" class="glitch" data-text="COVENANT">EMBERBOUND</h3>
+              <p class="mystery-tagline">A sweet puzzle forged in hellfire. Fail to solve it together, and the flames devour you.</p>
+              <p class="mystery-hint">Mode: <strong>Co-op Puzzle</strong> | Reveal: <span>Coming Soon (Demo)</span></p>
+              <div class="tech-stack" aria-label="Potential tech stack">
+                <span class="tech-tag">Unity</span>
+                <span class="tech-tag">Photon</span>
+                <span class="tech-tag">Puzzle</span>
+                <span class="tech-tag">Co-op Loop</span>
+              </div>
+              <div class="project-links" style="margin-top:1.25rem;">
+                <a href="#contact" aria-label="Get access details">Join Waiting List</a>
+              </div>
+            </div>
+        </div>
+
         <!-- Project 1 -->
         <div class="project-card fade-in">
           <div class="project-image-container">
@@ -1218,11 +1384,8 @@
             </a>
           </div>
         </div>
-        <div class="contact-form slide-in-right">
-         <form
-  action="https://formspree.io/f/mrbkwydd"
-  method="POST"
->
+  <div class="contact-form slide-in-right">
+   <form id="contactForm" action="https://formspree.io/f/mrbkwydd" method="POST">
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" required>
@@ -1240,12 +1403,11 @@
               <textarea id="message" name="message" required></textarea>
             </div>
 
-            <!-- HONEYPOT FIELD 
-            <div style="display:none;" aria-hidden="true">
-              <label for="website">Leave this field blank</label>
-              <input type="text" id="website" name="website" tabindex="-1">
+            <!-- HONEYPOT FIELD -->
+            <div class="sr-only" aria-hidden="true">
+              <label for="website">Do not fill this field</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
             </div>
--->
             <div class="success-message" id="successMessage">
               Thank you for your message! I'll get back to you soon.
             </div>
@@ -1303,6 +1465,29 @@
       animateElements.forEach(element => {
         observer.observe(element);
       });
+
+      // Mystery cards performance + atmosphere
+      // Simple visibility observer (kept for fade-in consistency only)
+      const mysteryCards = document.querySelectorAll('.mystery-card');
+      const mysteryObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+      }, { threshold: 0.25 });
+      mysteryCards.forEach(c => mysteryObserver.observe(c));
+
+      // Lazy load large media (add loading attr to images/video sources if not already)
+      document.querySelectorAll('img').forEach(img => { img.loading = 'lazy'; });
+      // Pause offscreen autoplay videos to save CPU
+      const videos = document.querySelectorAll('video[autoplay]');
+      const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) {
+            entry.target.pause();
+          } else {
+            if (entry.target.paused) entry.target.play().catch(()=>{});
+          }
+        });
+      }, { threshold: 0.1 });
+      videos.forEach(v => videoObserver.observe(v));
 
       // Typewriter Effect for Hero Tagline
       const typewriterTextElement = document.querySelector('.typewriter-text');
