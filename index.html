@@ -673,6 +673,190 @@
       box-shadow: var(--shadow-primary);
     }
 
+    /* Featured Steam Project */
+    .featured-project {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1.25fr 0.9fr;
+      gap: 2rem;
+      align-items: center;
+      padding: 2.5rem;
+      border-radius: 18px;
+      border: 1px solid rgba(0, 191, 255, 0.25);
+      background: radial-gradient(1200px circle at 20% 30%, rgba(0, 191, 255, 0.18), transparent 42%),
+        radial-gradient(900px circle at 85% 70%, rgba(255, 140, 0, 0.14), transparent 48%),
+        linear-gradient(135deg, #11111a 0%, #191929 55%, #12121c 100%);
+      box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.8), inset 0 0 18px -10px rgba(0, 191, 255, 0.35);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .featured-project::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: repeating-linear-gradient(45deg, rgba(0, 191, 255, 0.08) 0 10px, transparent 10px 20px);
+      opacity: 0.25;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .featured-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(0, 191, 255, 0.14);
+      border: 1px solid rgba(0, 191, 255, 0.35);
+      color: #bfefff;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 1rem;
+      width: fit-content;
+      position: relative;
+      z-index: 1;
+    }
+
+    .featured-title {
+      font-size: clamp(2.1rem, 3.2vw, 3.1rem);
+      line-height: 1.05;
+      margin-bottom: 0.75rem;
+      text-shadow: 0 0 26px rgba(0, 191, 255, 0.18);
+      position: relative;
+      z-index: 1;
+    }
+
+    .featured-title span {
+      background: linear-gradient(90deg, #ffffff 0%, #bfefff 45%, #ffcf8a 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .featured-description {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      margin-bottom: 1.4rem;
+      position: relative;
+      z-index: 1;
+      max-width: 62ch;
+    }
+
+    .featured-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-steam {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.85rem 1.15rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: 0.6px;
+      border: 1px solid rgba(0, 191, 255, 0.7);
+      background: linear-gradient(135deg, rgba(0, 191, 255, 0.22), rgba(0, 191, 255, 0.06));
+      color: #d7f6ff;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+      box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    }
+
+    .btn-steam:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, rgba(0, 191, 255, 0.32), rgba(0, 191, 255, 0.1));
+      box-shadow: 0 0 26px rgba(0, 191, 255, 0.18);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 1.15rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      border: 1px solid rgba(255, 140, 0, 0.45);
+      background: rgba(255, 140, 0, 0.06);
+      color: #ffe0bf;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .btn-ghost:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 26px rgba(255, 140, 0, 0.14);
+    }
+
+    .featured-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .meta-chip {
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(224, 224, 224, 0.9);
+    }
+
+    .featured-media {
+      position: relative;
+      z-index: 1;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 191, 255, 0.25);
+      background: rgba(0, 0, 0, 0.25);
+      box-shadow: 0 16px 34px -24px rgba(0, 0, 0, 0.75);
+      min-height: 260px;
+      display: grid;
+      place-items: center;
+    }
+
+    .featured-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      min-height: 260px;
+      filter: saturate(1.05) contrast(1.05);
+      transform: scale(1.01);
+    }
+
+    .featured-media .placeholder {
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-secondary);
+    }
+
+    /* Featured responsive */
+    @media (max-width: 950px) {
+      .featured-project {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+      }
+      .featured-media {
+        order: -1;
+      }
+    }
+
     /* NEW Skills Section */
     .skills {
       padding: 2rem 0;
@@ -1086,23 +1270,39 @@
     <section id="projects" class="section projects">
       <h2 class="section-title fade-in">My Game Projects</h2>
       <div class="projects-grid">
-        <!-- Mystery Project Card 1 -->
-  <div class="project-card mystery-card horror fade-in" aria-labelledby="mysteryTitle1">
-          <div class="mystery-content">
-            <h3 id="mysteryTitle1" class="glitch" data-text="UNSEEN">UNSEEN</h3>
-            <p class="mystery-tagline">Together, you disappear into the shadows.</p>
-            <p class="mystery-hint">Phase: <strong>Prototype</strong> | Exposure: <span>Hidden</span></p>
-            <div class="tech-stack" aria-label="Potential tech stack">
-              <span class="tech-tag">Unity</span>
-              <span class="tech-tag">C#</span>
-              <span class="tech-tag">Photon</span>
-              <span class="tech-tag">Atmosphere</span>
+        <!-- Featured Project: Steam Wishlist -->
+        <article class="project-card featured-project fade-in" aria-labelledby="featuredLostTitle">
+          <div class="featured-info">
+            <div class="featured-badge" aria-label="Available on Steam wishlist">
+              <span aria-hidden="true">★</span>
+              <span>Now on Steam Wishlist</span>
             </div>
-            <div class="project-links" style="margin-top:1.25rem;">
-              <a href="#contact" aria-label="Reach out for more details">Request Access</a>
+            <h3 id="featuredLostTitle" class="featured-title"><span>Lost in Your Eyes</span></h3>
+            <p class="featured-description">
+              Lost In Your Eyes is a 2 Player co-op Puzzle Adventure game where you and your friend face challenging
+              puzzles to escape uniquely designed levels together. Communication is key — but do you trust your friend
+              or your EYES?
+            </p>
+            <div class="featured-cta">
+              <a class="btn-steam" href="https://store.steampowered.com/app/4038300/Lost_In_Your_Eyes" target="_blank" rel="noopener noreferrer">
+                Wishlist on Steam
+              </a>
+              <a class="btn-ghost" href="#contact">Press / Contact</a>
+            </div>
+            <div class="featured-meta" aria-label="Game tags">
+              <span class="meta-chip">Steam</span>
+              <span class="meta-chip">Wishlist</span>
+              <span class="meta-chip">Unity</span>
             </div>
           </div>
-        </div>
+          <div class="featured-media">
+            <img
+              src="Images/LostInYourEyesHeader.jpg"
+              alt="Lost In Your Eyes Steam header image"
+              loading="lazy"
+            >
+          </div>
+        </article>
 
         <!-- Mystery Project Card 2 -->
   <div class="project-card mystery-card hell fade-in" aria-labelledby="mysteryTitle2">
